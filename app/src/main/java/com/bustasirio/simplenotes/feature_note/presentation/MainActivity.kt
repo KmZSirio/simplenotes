@@ -6,15 +6,18 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.core.view.WindowCompat
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.components.AddEditNoteScreen
-import com.bustasirio.simplenotes.feature_note.presentation.notes.components.NotesScreen
+import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.AddEditNoteScreen
+import com.bustasirio.simplenotes.feature_note.presentation.notes.NotesScreen
 import com.bustasirio.simplenotes.feature_note.presentation.util.Screen
+import com.bustasirio.simplenotes.ui.theme.GrayDark
 import com.bustasirio.simplenotes.ui.theme.SimpleNotesTheme
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,8 +26,15 @@ class MainActivity : ComponentActivity() {
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             SimpleNotesTheme {
+
+                val systemUiController = rememberSystemUiController()
+                systemUiController.setSystemBarsColor(
+                    color = GrayDark
+                )
+
                 Surface(
                     color = MaterialTheme.colors.background
                 ) {

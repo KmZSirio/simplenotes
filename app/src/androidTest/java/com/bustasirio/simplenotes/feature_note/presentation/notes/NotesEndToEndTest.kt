@@ -13,10 +13,8 @@ import com.bustasirio.simplenotes.core.util.TestTags.NOTE_ITEM
 import com.bustasirio.simplenotes.core.util.TestTags.TITLE_TEXT_FIELD
 import com.bustasirio.simplenotes.di.AppModule
 import com.bustasirio.simplenotes.feature_note.presentation.MainActivity
-import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.components.AddEditNoteScreen
-import com.bustasirio.simplenotes.feature_note.presentation.notes.components.NotesScreen
+import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.AddEditNoteScreen
 import com.bustasirio.simplenotes.feature_note.presentation.util.Screen
-import com.bustasirio.simplenotes.ui.theme.SimpleNotesTheme
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import dagger.hilt.android.testing.UninstallModules
@@ -93,7 +91,7 @@ class NotesEndToEndTest {
         // * Edit note
         composeRule.onNodeWithText("test-title").performClick()
 
-        // * Make sure the note contain the exact data
+        // * Make sure the note contains the exact data
         composeRule.onNodeWithTag(TITLE_TEXT_FIELD)
             .assertTextEquals("test-title")
         composeRule.onNodeWithTag(CONTENT_TEXT_FIELD)

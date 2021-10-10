@@ -1,4 +1,4 @@
-package com.bustasirio.simplenotes.feature_note.presentation.notes.components
+package com.bustasirio.simplenotes.feature_note.presentation.notes
 
 import androidx.compose.animation.*
 import androidx.compose.foundation.clickable
@@ -14,12 +14,14 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bustasirio.simplenotes.R
 import com.bustasirio.simplenotes.core.util.TestTags.ORDER_SECTION
-import com.bustasirio.simplenotes.feature_note.presentation.notes.NotesEvent
-import com.bustasirio.simplenotes.feature_note.presentation.notes.NotesViewModel
+import com.bustasirio.simplenotes.feature_note.presentation.notes.components.NoteItem
+import com.bustasirio.simplenotes.feature_note.presentation.notes.components.OrderSection
 import com.bustasirio.simplenotes.feature_note.presentation.util.Screen
 import kotlinx.coroutines.launch
 
@@ -33,6 +35,9 @@ fun NotesScreen(
     val scaffoldState = rememberScaffoldState()
     val scope = rememberCoroutineScope()
 
+    val snackbarMessage = stringResource(R.string.snackbar_delete_message)
+    val snackbarAction = stringResource(R.string.snackbar_delete_action)
+
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
@@ -41,7 +46,7 @@ fun NotesScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Add, contentDescription = "Add")
+                Icon(imageVector = Icons.Default.Add, contentDescription = stringResource(R.string.add))
             }
         },
         scaffoldState = scaffoldState
@@ -57,7 +62,7 @@ fun NotesScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = "Your note",
+                    text = stringResource(R.string.screen_title),
                     style = MaterialTheme.typography.h4
                 )
                 IconButton(
@@ -67,7 +72,7 @@ fun NotesScreen(
                 ) {
                     Icon(
                         imageVector = Icons.Default.Sort,
-                        contentDescription = "Sort"
+                        contentDescription = stringResource(R.string.sort)
                     )
                 }
             }
@@ -104,8 +109,8 @@ fun NotesScreen(
                             viewModel.onEvent(NotesEvent.DeleteNote(note))
                             scope.launch {
                                 val result = scaffoldState.snackbarHostState.showSnackbar(
-                                    message = "Note deleted",
-                                    actionLabel = "Undo"
+                                    message = snackbarMessage,
+                                    actionLabel = snackbarAction
                                 )
                                 if (result == SnackbarResult.ActionPerformed) {
                                     viewModel.onEvent(NotesEvent.RestoreNote)

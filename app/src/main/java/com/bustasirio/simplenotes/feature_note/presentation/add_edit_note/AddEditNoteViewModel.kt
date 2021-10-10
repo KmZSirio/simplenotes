@@ -1,11 +1,11 @@
 package com.bustasirio.simplenotes.feature_note.presentation.add_edit_note
 
+import android.app.Application
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.graphics.toArgb
-import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
+import com.bustasirio.simplenotes.R
 import com.bustasirio.simplenotes.feature_note.domain.model.InvalidNoteException
 import com.bustasirio.simplenotes.feature_note.domain.model.Note
 import com.bustasirio.simplenotes.feature_note.domain.use_case.NoteUseCases
@@ -17,17 +17,20 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddEditNoteViewModel @Inject constructor(
+    app: Application,
     private val noteUseCases: NoteUseCases,
     savedStateHandle: SavedStateHandle
-): ViewModel() {
+): AndroidViewModel(app) {
+
+    private val snackbarErrorText = app.getString(R.string.could_not_save)
 
     private val _noteTitle = mutableStateOf(NoteTextFieldState(
-        hint = "Enter title..."
+        hint = app.getString(R.string.hint_title)
     ))
     val noteTitle: State<NoteTextFieldState> = _noteTitle
 
     private val _noteContent = mutableStateOf(NoteTextFieldState(
-        hint = "Enter some content..."
+        hint = app.getString(R.string.hint_content)
     ))
     val noteContent: State<NoteTextFieldState> = _noteContent
 
@@ -102,7 +105,7 @@ class AddEditNoteViewModel @Inject constructor(
                         _eventFlow.emit(UiEvent.SaveNote)
                     } catch (e: InvalidNoteException) {
                         _eventFlow.emit(UiEvent.ShowSnackbar(
-                            message = e.message ?: "Couldn't save note"
+                            message = e.message ?: snackbarErrorText
                         ))
                     }
                 }

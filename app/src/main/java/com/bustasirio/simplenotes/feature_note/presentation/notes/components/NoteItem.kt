@@ -19,10 +19,12 @@ import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.clipPath
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.ColorUtils
+import com.bustasirio.simplenotes.R
 import com.bustasirio.simplenotes.core.util.TestTags.NOTE_ITEM
 import com.bustasirio.simplenotes.feature_note.domain.model.Note
 
@@ -92,7 +94,7 @@ fun NoteItem(
         ) {
             Icon(
                 imageVector = Icons.Default.Delete,
-                contentDescription = "Delete note"
+                contentDescription = stringResource(R.string.delete_note)
             )
         }
     }

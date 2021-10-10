@@ -13,6 +13,7 @@ import androidx.navigation.compose.rememberNavController
 import com.bustasirio.simplenotes.core.util.TestTags.ORDER_SECTION
 import com.bustasirio.simplenotes.di.AppModule
 import com.bustasirio.simplenotes.feature_note.presentation.MainActivity
+import com.bustasirio.simplenotes.feature_note.presentation.notes.NotesScreen
 import com.bustasirio.simplenotes.feature_note.presentation.util.Screen
 import com.bustasirio.simplenotes.ui.theme.SimpleNotesTheme
 import dagger.hilt.android.testing.HiltAndroidRule

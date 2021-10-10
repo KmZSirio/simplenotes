@@ -1,4 +1,4 @@
-package com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.components
+package com.bustasirio.simplenotes.feature_note.presentation.add_edit_note
 
 import androidx.compose.animation.Animatable
 import androidx.compose.animation.core.tween
@@ -10,23 +10,26 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Save
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bustasirio.simplenotes.R
 import com.bustasirio.simplenotes.core.util.TestTags.CONTENT_TEXT_FIELD
 import com.bustasirio.simplenotes.core.util.TestTags.TITLE_TEXT_FIELD
 import com.bustasirio.simplenotes.feature_note.domain.model.Note
 import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.AddEditNoteEvent
 import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.AddEditNoteViewModel
+import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.components.TransparentHintTextField
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -71,7 +74,7 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save")
+                Icon(imageVector = Icons.Default.Save, contentDescription = stringResource(R.string.save))
             }
         },
         scaffoldState = scaffoldState

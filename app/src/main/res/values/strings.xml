@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Simple Notes</string>
+    <string name="screen_title">Your note</string>
+    <string name="sort">Sort</string>
+    <string name="add">Add</string>
+    <string name="snackbar_delete_message">Note deleted</string>
+    <string name="snackbar_delete_action">Undo</string>
+    <string name="delete_note">Delete note</string>
+    <string name="title">Title</string>
+    <string name="date">Date</string>
+    <string name="color">Color</string>
+    <string name="ascending">Ascending</string>
+    <string name="descending">Descending</string>
+    <string name="save">Save</string>
+    <string name="could_not_save">Couldn\'t save note</string>
+    <string name="hint_title">Enter title...</string>
+    <string name="hint_content">Enter some content...</string>
 </resources>
