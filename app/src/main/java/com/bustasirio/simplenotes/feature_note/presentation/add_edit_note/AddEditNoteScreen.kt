@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.bustasirio.simplenotes.core.util.TestTags.CONTENT_TEXT_FIELD
+import com.bustasirio.simplenotes.core.util.TestTags.TITLE_TEXT_FIELD
 import com.bustasirio.simplenotes.feature_note.domain.model.Note
 import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.AddEditNoteEvent
 import com.bustasirio.simplenotes.feature_note.presentation.add_edit_note.AddEditNoteViewModel
@@ -69,7 +71,7 @@ fun AddEditNoteScreen(
                 },
                 backgroundColor = MaterialTheme.colors.primary
             ) {
-                Icon(imageVector = Icons.Default.Save, contentDescription = "Save note")
+                Icon(imageVector = Icons.Default.Save, contentDescription = "Save")
             }
         },
         scaffoldState = scaffoldState
@@ -127,7 +129,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = titleState.isHintVisible,
                 singleLine = true,
-                textStyle = MaterialTheme.typography.h5
+                textStyle = MaterialTheme.typography.h5,
+                testTag = TITLE_TEXT_FIELD
             )
             Spacer(modifier = Modifier.height(16.dp))
             TransparentHintTextField(
@@ -141,7 +144,8 @@ fun AddEditNoteScreen(
                 },
                 isHintVisible = contentState.isHintVisible,
                 textStyle = MaterialTheme.typography.body1,
-                modifier = Modifier.fillMaxHeight()
+                modifier = Modifier.fillMaxHeight(),
+                testTag = CONTENT_TEXT_FIELD
             )
         }
     }
